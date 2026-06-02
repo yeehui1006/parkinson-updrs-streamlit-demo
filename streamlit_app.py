@@ -148,6 +148,37 @@ st.markdown(
         color: #25313b !important;
         border-color: #aeb7c0 !important;
     }
+    .feature-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid #c9bccd;
+        background: #eadfea;
+        box-shadow: 0 1px 2px rgba(63, 51, 69, 0.08);
+    }
+    .feature-table th {
+        background: #dccbdd;
+        color: #312536;
+        font-weight: 700;
+        padding: 0.55rem 0.75rem;
+        border-bottom: 1px solid #c9bccd;
+        text-align: left;
+    }
+    .feature-table td {
+        background: #eadfea;
+        color: #312536;
+        padding: 0.48rem 0.75rem;
+        border-bottom: 1px solid #d8cbd9;
+    }
+    .feature-table tr:last-child td {
+        border-bottom: none;
+    }
+    .feature-table td:last-child {
+        text-align: right;
+        font-weight: 600;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -222,7 +253,23 @@ with right:
 
 st.subheader("Input Voice Features")
 feature_table = X_sample.round(5).T.rename(columns={X_sample.index[0]: "Value"})
-st.dataframe(feature_table, use_container_width=True, height=255)
+feature_rows = "\n".join(
+    f"<tr><td>{feature}</td><td>{value:.5f}</td></tr>"
+    for feature, value in feature_table["Value"].items()
+)
+st.markdown(
+    f"""
+    <table class="feature-table">
+        <thead>
+            <tr><th>Voice Feature</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+            {feature_rows}
+        </tbody>
+    </table>
+    """,
+    unsafe_allow_html=True,
+)
 
 st.markdown(
     "<p class='small-note'>Academic demonstration only. This model is a decision-support "
