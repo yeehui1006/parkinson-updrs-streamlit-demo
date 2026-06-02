@@ -35,92 +35,138 @@ def train_demo_model(df):
 
 def interpret_updrs(score):
     if score < 20:
-        return "Lower severity", "Score is below 20 in this project demo range."
+        return "Lower severity", "Below 20"
     if score < 35:
-        return "Moderate severity", "Score is between 20 and 35 in this project demo range."
-    return "Higher severity", "Score is 35 or above in this project demo range."
+        return "Moderate severity", "20 to below 35"
+    return "Higher severity", "35 and above"
 
 
 st.set_page_config(
     page_title="Parkinson UPDRS Prediction Demo",
     page_icon="",
-    layout="centered",
+    layout="wide",
+    initial_sidebar_state="collapsed",
 )
 
-st.title("Parkinson Disease Severity Prediction Demo")
-st.write(
-    "This demo randomly selects one prepared patient voice record and predicts "
-    "its UPDRS severity score using the same final voice features used in the notebook."
+st.markdown(
+    """
+    <style>
+    .block-container {
+        padding-top: 1rem;
+        padding-bottom: 0.75rem;
+        max-width: 1180px;
+    }
+    h1 {
+        font-size: 1.65rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+    h2, h3 {
+        font-size: 1rem !important;
+        margin-top: 0.35rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    p, li, table, div {
+        font-size: 0.88rem;
+    }
+    [data-testid="stMetric"] {
+        background: #151922;
+        border: 1px solid #2a2f3a;
+        border-radius: 8px;
+        padding: 0.55rem 0.65rem;
+    }
+    [data-testid="stMetricLabel"] {
+        font-size: 0.78rem;
+    }
+    [data-testid="stMetricValue"] {
+        font-size: 1.35rem;
+    }
+    .stButton > button {
+        width: 100%;
+        height: 2.35rem;
+    }
+    .small-note {
+        color: #9ca3af;
+        font-size: 0.78rem;
+        line-height: 1.25;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
-
-with st.expander("What does the UPDRS score mean?"):
-    st.write(
-        "UPDRS stands for Unified Parkinson's Disease Rating Scale. It is used to "
-        "measure Parkinson Disease symptoms and disease severity. In general, a "
-        "higher UPDRS score means more severe symptoms."
-    )
-    st.write(
-        "For this project demo, the predicted score is interpreted using a simple "
-        "three-level guide based on the score range observed in the prepared dataset:"
-    )
-    st.markdown(
-        """
-        | UPDRS score | Demo interpretation |
-        |---|---|
-        | Below 20 | Lower severity |
-        | 20 to below 35 | Moderate severity |
-        | 35 and above | Higher severity |
-        """
-    )
-    st.caption(
-        "This guide is for presentation and model-demo understanding only. It is not "
-        "an official clinical diagnosis scale."
-    )
 
 df = load_data()
 model = train_demo_model(df)
 
-st.subheader("Dataset Overview")
-col1, col2, col3 = st.columns(3)
-col1.metric("Records", f"{len(df):,}")
-col2.metric("Subjects", f"{df['subject_id'].nunique():,}")
-col3.metric("Features", len(FEATURES))
-
-st.subheader("Random Patient Recording")
-
 if "sample_seed" not in st.session_state:
     st.session_state.sample_seed = 42
 
-if st.button("Randomly Select Patient Record"):
+if st.session_state.get("randomize_now", False):
     st.session_state.sample_seed = int(np.random.randint(0, 1_000_000))
+    st.session_state.randomize_now = False
 
 sample = df.sample(n=1, random_state=st.session_state.sample_seed).iloc[0]
 X_sample = sample[FEATURES].to_frame().T
 prediction = float(model.predict(X_sample.values)[0])
 actual = float(sample["UPDRS_target"])
 error = actual - prediction
-actual_level, actual_note = interpret_updrs(actual)
-predicted_level, predicted_note = interpret_updrs(prediction)
+actual_level, actual_range = interpret_updrs(actual)
+predicted_level, predicted_range = interpret_updrs(prediction)
 
-info1, info2 = st.columns(2)
-info1.metric("Subject ID", str(sample["subject_id"]))
-info2.metric("Dataset Source", str(sample["source"]))
+st.title("Parkinson Disease Severity Prediction Demo")
+st.caption(
+    "Randomly selects one prepared patient voice record and predicts its UPDRS "
+    "severity score using the final voice features from the notebook."
+)
 
-score1, score2, score3 = st.columns(3)
-score1.metric("Actual UPDRS", f"{actual:.2f}")
-score2.metric("Predicted UPDRS", f"{prediction:.2f}")
-score3.metric("Error", f"{error:.2f}")
+left, right = st.columns([1.05, 1.15], gap="medium")
 
-level1, level2 = st.columns(2)
-level1.metric("Actual Severity", actual_level)
-level1.caption(actual_note)
-level2.metric("Predicted Severity", predicted_level)
-level2.caption(predicted_note)
+with left:
+    st.subheader("Demo Record")
+    if st.button("Randomly Select Patient Record"):
+        st.session_state.randomize_now = True
+        st.rerun()
+
+    id_col, source_col = st.columns([0.55, 1.45])
+    id_col.metric("Subject ID", str(sample["subject_id"]))
+    source_col.metric("Dataset Source", str(sample["source"]))
+
+    score1, score2, score3 = st.columns(3)
+    score1.metric("Actual UPDRS", f"{actual:.2f}")
+    score2.metric("Predicted UPDRS", f"{prediction:.2f}")
+    score3.metric("Error", f"{error:.2f}")
+
+    sev1, sev2 = st.columns(2)
+    sev1.metric("Actual Severity", actual_level)
+    sev1.caption(actual_range)
+    sev2.metric("Predicted Severity", predicted_level)
+    sev2.caption(predicted_range)
+
+with right:
+    st.subheader("UPDRS Meaning")
+    st.markdown(
+        """
+        **UPDRS** means **Unified Parkinson's Disease Rating Scale**.
+        A higher score generally indicates more severe Parkinson symptoms.
+
+        | Score range | Demo interpretation |
+        |---|---|
+        | Below 20 | Lower severity |
+        | 20 to below 35 | Moderate severity |
+        | 35 and above | Higher severity |
+        """
+    )
+    st.markdown(
+        "<p class='small-note'>This severity guide is for project-demo understanding "
+        "only, not an official clinical diagnosis scale.</p>",
+        unsafe_allow_html=True,
+    )
 
 st.subheader("Input Voice Features")
-st.dataframe(X_sample.round(5), use_container_width=True)
+feature_table = X_sample.round(5).T.rename(columns={X_sample.index[0]: "Value"})
+st.dataframe(feature_table, use_container_width=True, height=255)
 
-st.info(
-    "This is a demonstration decision-support workflow only. It is not a "
-    "clinical diagnosis tool and should be externally validated before real use."
+st.markdown(
+    "<p class='small-note'>Academic demonstration only. This model is a decision-support "
+    "prototype and should be externally validated before any real clinical use.</p>",
+    unsafe_allow_html=True,
 )
