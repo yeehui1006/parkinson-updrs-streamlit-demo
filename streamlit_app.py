@@ -56,6 +56,9 @@ st.markdown(
         padding-bottom: 0.75rem;
         max-width: 1180px;
     }
+    .stApp {
+        background: #f6f7f9;
+    }
     h1 {
         font-size: 1.65rem !important;
         margin-bottom: 0.15rem !important;
@@ -104,6 +107,9 @@ st.markdown(
         padding: 0.75rem 0.85rem;
     }
     @media (prefers-color-scheme: dark) {
+        .stApp {
+            background: #0f1720;
+        }
         [data-testid="stMetric"] {
             background: linear-gradient(180deg, #1f2933 0%, #111827 100%);
             border-color: #374151;
