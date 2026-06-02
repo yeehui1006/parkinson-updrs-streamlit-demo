@@ -105,17 +105,25 @@ st.markdown(
     }
     @media (prefers-color-scheme: dark) {
         [data-testid="stMetric"] {
-            background: linear-gradient(180deg, #fafafa 0%, #f1f3f5 100%);
-            border-color: #d7dce0;
+            background: linear-gradient(180deg, #1f2933 0%, #111827 100%);
+            border-color: #374151;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
         }
         [data-testid="stMetricLabel"] {
-            color: #5f6b76;
+            color: #d1d5db;
         }
         [data-testid="stMetricValue"] {
-            color: #1f2933;
+            color: #f9fafb;
+        }
+        [data-testid="stMetricDelta"] {
+            color: #d1d5db;
+        }
+        .score-band {
+            background: #111827;
+            border-color: #374151;
         }
         .small-note {
-            color: #667985;
+            color: #d1d5db;
         }
     }
     </style>
