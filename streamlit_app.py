@@ -33,6 +33,14 @@ def train_demo_model(df):
     return model
 
 
+def interpret_updrs(score):
+    if score < 20:
+        return "Lower severity", "Score is below 20 in this project demo range."
+    if score < 35:
+        return "Moderate severity", "Score is between 20 and 35 in this project demo range."
+    return "Higher severity", "Score is 35 or above in this project demo range."
+
+
 st.set_page_config(
     page_title="Parkinson UPDRS Prediction Demo",
     page_icon="",
@@ -44,6 +52,30 @@ st.write(
     "This demo randomly selects one prepared patient voice record and predicts "
     "its UPDRS severity score using the same final voice features used in the notebook."
 )
+
+with st.expander("What does the UPDRS score mean?"):
+    st.write(
+        "UPDRS stands for Unified Parkinson's Disease Rating Scale. It is used to "
+        "measure Parkinson Disease symptoms and disease severity. In general, a "
+        "higher UPDRS score means more severe symptoms."
+    )
+    st.write(
+        "For this project demo, the predicted score is interpreted using a simple "
+        "three-level guide based on the score range observed in the prepared dataset:"
+    )
+    st.markdown(
+        """
+        | UPDRS score | Demo interpretation |
+        |---|---|
+        | Below 20 | Lower severity |
+        | 20 to below 35 | Moderate severity |
+        | 35 and above | Higher severity |
+        """
+    )
+    st.caption(
+        "This guide is for presentation and model-demo understanding only. It is not "
+        "an official clinical diagnosis scale."
+    )
 
 df = load_data()
 model = train_demo_model(df)
@@ -67,6 +99,8 @@ X_sample = sample[FEATURES].to_frame().T
 prediction = float(model.predict(X_sample.values)[0])
 actual = float(sample["UPDRS_target"])
 error = actual - prediction
+actual_level, actual_note = interpret_updrs(actual)
+predicted_level, predicted_note = interpret_updrs(prediction)
 
 info1, info2 = st.columns(2)
 info1.metric("Subject ID", str(sample["subject_id"]))
@@ -77,6 +111,12 @@ score1.metric("Actual UPDRS", f"{actual:.2f}")
 score2.metric("Predicted UPDRS", f"{prediction:.2f}")
 score3.metric("Error", f"{error:.2f}")
 
+level1, level2 = st.columns(2)
+level1.metric("Actual Severity", actual_level)
+level1.caption(actual_note)
+level2.metric("Predicted Severity", predicted_level)
+level2.caption(predicted_note)
+
 st.subheader("Input Voice Features")
 st.dataframe(X_sample.round(5), use_container_width=True)
 
@@ -84,4 +124,3 @@ st.info(
     "This is a demonstration decision-support workflow only. It is not a "
     "clinical diagnosis tool and should be externally validated before real use."
 )
-
