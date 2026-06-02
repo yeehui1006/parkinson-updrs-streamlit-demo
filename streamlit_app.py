@@ -69,25 +69,54 @@ st.markdown(
         font-size: 0.88rem;
     }
     [data-testid="stMetric"] {
-        background: #151922;
-        border: 1px solid #2a2f3a;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
         border-radius: 8px;
         padding: 0.55rem 0.65rem;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
     }
     [data-testid="stMetricLabel"] {
         font-size: 0.78rem;
+        color: #6b7280;
     }
     [data-testid="stMetricValue"] {
         font-size: 1.35rem;
+        color: #111827;
+    }
+    [data-testid="stMetricDelta"] {
+        color: #4b5563;
     }
     .stButton > button {
         width: 100%;
         height: 2.35rem;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
     }
     .small-note {
-        color: #9ca3af;
+        color: #6b7280;
         font-size: 0.78rem;
         line-height: 1.25;
+    }
+    .score-band {
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 0.75rem 0.85rem;
+    }
+    @media (prefers-color-scheme: dark) {
+        [data-testid="stMetric"] {
+            background: #111827;
+            border-color: #374151;
+        }
+        [data-testid="stMetricLabel"] {
+            color: #d1d5db;
+        }
+        [data-testid="stMetricValue"] {
+            color: #f9fafb;
+        }
+        .small-note {
+            color: #d1d5db;
+        }
     }
     </style>
     """,
