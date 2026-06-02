@@ -57,7 +57,12 @@ st.markdown(
         max-width: 1180px;
     }
     .stApp {
-        background: #f6f7f9;
+        background: #f7f8fa;
+        color: #1f2937;
+    }
+    .stApp h1, .stApp h2, .stApp h3,
+    .stApp p, .stApp li, .stApp table, .stApp div {
+        color: #1f2937;
     }
     h1 {
         font-size: 1.65rem !important;
@@ -105,32 +110,6 @@ st.markdown(
         border: 1px solid #dde1e5;
         border-radius: 8px;
         padding: 0.75rem 0.85rem;
-    }
-    @media (prefers-color-scheme: dark) {
-        .stApp {
-            background: #0f1720;
-        }
-        [data-testid="stMetric"] {
-            background: linear-gradient(180deg, #1f2933 0%, #111827 100%);
-            border-color: #374151;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-        }
-        [data-testid="stMetricLabel"] {
-            color: #d1d5db;
-        }
-        [data-testid="stMetricValue"] {
-            color: #f9fafb;
-        }
-        [data-testid="stMetricDelta"] {
-            color: #d1d5db;
-        }
-        .score-band {
-            background: #111827;
-            border-color: #374151;
-        }
-        .small-note {
-            color: #d1d5db;
-        }
     }
     </style>
     """,
