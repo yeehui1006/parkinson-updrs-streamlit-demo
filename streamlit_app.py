@@ -69,22 +69,22 @@ st.markdown(
         font-size: 0.88rem;
     }
     [data-testid="stMetric"] {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
+        background: linear-gradient(180deg, #f8fcff 0%, #eef7fb 100%);
+        border: 1px solid #cfe7ef;
         border-radius: 8px;
         padding: 0.55rem 0.65rem;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+        box-shadow: 0 1px 2px rgba(36, 94, 112, 0.08);
     }
     [data-testid="stMetricLabel"] {
         font-size: 0.78rem;
-        color: #6b7280;
+        color: #526b75;
     }
     [data-testid="stMetricValue"] {
         font-size: 1.35rem;
-        color: #111827;
+        color: #173b4a;
     }
     [data-testid="stMetricDelta"] {
-        color: #4b5563;
+        color: #526b75;
     }
     .stButton > button {
         width: 100%;
@@ -93,29 +93,29 @@ st.markdown(
         border: 1px solid #d1d5db;
     }
     .small-note {
-        color: #6b7280;
+        color: #667985;
         font-size: 0.78rem;
         line-height: 1.25;
     }
     .score-band {
-        background: #f8fafc;
-        border: 1px solid #e5e7eb;
+        background: #f7fbfd;
+        border: 1px solid #d8edf3;
         border-radius: 8px;
         padding: 0.75rem 0.85rem;
     }
     @media (prefers-color-scheme: dark) {
         [data-testid="stMetric"] {
-            background: #111827;
-            border-color: #374151;
+            background: linear-gradient(180deg, #f8fcff 0%, #eef7fb 100%);
+            border-color: #cfe7ef;
         }
         [data-testid="stMetricLabel"] {
-            color: #d1d5db;
+            color: #526b75;
         }
         [data-testid="stMetricValue"] {
-            color: #f9fafb;
+            color: #173b4a;
         }
         .small-note {
-            color: #d1d5db;
+            color: #667985;
         }
     }
     </style>
