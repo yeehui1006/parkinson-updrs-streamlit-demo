@@ -52,7 +52,7 @@ st.markdown(
     """
     <style>
     .block-container {
-        padding-top: 1rem;
+        padding-top: 2.35rem;
         padding-bottom: 0.75rem;
         max-width: 1180px;
     }
@@ -98,7 +98,19 @@ st.markdown(
         width: 100%;
         height: 2.35rem;
         border-radius: 8px;
-        border: 1px solid #d1d5db;
+        border: 1px solid #c9bccd;
+        background: #eadfea;
+        color: #3f3345;
+        font-weight: 600;
+    }
+    .stButton > button:hover {
+        border-color: #a98caf;
+        background: #dccbdd;
+        color: #312536;
+    }
+    .stButton > button:active {
+        background: #ceb9cf;
+        color: #312536;
     }
     .small-note {
         color: #667985;
@@ -110,6 +122,31 @@ st.markdown(
         border: 1px solid #dde1e5;
         border-radius: 8px;
         padding: 0.75rem 0.85rem;
+    }
+    [data-testid="stDataFrame"] {
+        border: 1px solid #9aa5b1;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #d6dbe1;
+    }
+    [data-testid="stDataFrame"] div {
+        color: #25313b;
+    }
+    [data-testid="stDataFrame"] [role="grid"] {
+        background: #d6dbe1;
+    }
+    [data-testid="stDataFrame"] [role="columnheader"] {
+        background: #b8c1ca !important;
+        color: #25313b !important;
+        font-weight: 700;
+    }
+    [data-testid="stDataFrame"] [role="row"] {
+        background: #d6dbe1 !important;
+    }
+    [data-testid="stDataFrame"] [role="gridcell"] {
+        background: #d6dbe1 !important;
+        color: #25313b !important;
+        border-color: #aeb7c0 !important;
     }
     </style>
     """,
