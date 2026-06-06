@@ -18,6 +18,10 @@ FEATURES = [
     "Shimmer:APQ11",
 ]
 
+MODEL_NAME = "Ridge"
+GROUPED_CV_MAE = 9.276
+BASELINE_MAE = 9.203
+
 
 @st.cache_data
 def load_data():
@@ -205,7 +209,14 @@ predicted_level, predicted_range = interpret_updrs(prediction)
 st.title("Parkinson Disease Severity Prediction Demo")
 st.caption(
     "Randomly selects one prepared patient voice record and predicts its UPDRS "
-    "severity score using the final voice features from the notebook."
+    f"severity score using the {MODEL_NAME} deployment candidate."
+)
+
+st.warning(
+    f"Academic proof of concept: grouped cross-validation MAE was "
+    f"{GROUPED_CV_MAE:.3f}, compared with {BASELINE_MAE:.3f} for the mean "
+    "baseline. The trained model did not beat the baseline and is not clinically "
+    "validated."
 )
 
 left, right = st.columns([1.05, 1.15], gap="medium")
@@ -272,7 +283,8 @@ st.markdown(
 )
 
 st.markdown(
-    "<p class='small-note'>Academic demonstration only. This model is a decision-support "
-    "prototype and should be externally validated before any real clinical use.</p>",
+    "<p class='small-note'>This record comes from the prepared training dataset, so "
+    "the result demonstrates the interface and inference workflow rather than "
+    "independent model validation. Do not use it for diagnosis or clinical decisions.</p>",
     unsafe_allow_html=True,
 )
