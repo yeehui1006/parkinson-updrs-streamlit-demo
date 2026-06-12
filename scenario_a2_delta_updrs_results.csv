@@ -1,0 +1,9 @@
+analysis,target,feature_set,validation,model,MAE_mean,MAE_std,RMSE_mean,RMSE_std,R2_mean,R2_std,n_train,n_test
+Scenario A2: Change-from-baseline monitoring,delta_total_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,MeanBaseline,5.056285008643043,,6.310724128392471,,-0.059093815568632024,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_total_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,Ridge_Robust,4.48993910149967,,5.821956812514728,,0.09860737592267654,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_total_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,ElasticNet_Robust,4.47306336522511,,5.805151570805407,,0.10380365568622463,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_total_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,RandomForest,2.37810409641108,,3.187393299636529,,0.7298236366222165,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_motor_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,MeanBaseline,4.159619876226146,,5.304642849046533,,-0.029020254143566016,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_motor_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,Ridge_Robust,3.7709337102805334,,4.820103413208423,,0.15038076355575491,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_motor_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,ElasticNet_Robust,3.7603120458017965,,4.807168521383985,,0.154934602482379,,4095,1780
+Scenario A2: Change-from-baseline monitoring,delta_motor_UPDRS,D1_delta_baseline_voice_demo_time,within_subject_temporal_holdout,RandomForest,2.004287193107917,,2.7196195101749554,,0.7295245069697226,,4095,1780

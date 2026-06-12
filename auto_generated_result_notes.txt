@@ -1,0 +1,44 @@
+
+Final Result Notes
+==================
+
+Best known-patient monitoring model:
+- Target: motor_UPDRS
+- Feature set: D1_voice16_demo_time_patient
+- Model: RandomForest
+- MAE: 1.909
+- RMSE: 2.657
+- R2: 0.897
+
+Best change-from-baseline supplementary model:
+- Target: delta_motor_UPDRS
+- Feature set: D1_delta_baseline_voice_demo_time
+- Model: RandomForest
+- MAE: 2.004
+- RMSE: 2.720
+- R2: 0.730
+
+Best new-patient generalisation model:
+- Target: motor_UPDRS
+- Feature set: D1_voice16_demo_time
+- Model: ElasticNet_Robust
+- MAE: 7.383
+- RMSE: 8.772
+- R2: -0.342
+
+Best Dataset 2 supplementary model:
+- Feature set: D2_full26
+- Model: RandomForest
+- MAE: 15.344
+- RMSE: 18.170
+- R2: -1.817
+
+Best exploratory merged model:
+- Feature set: Merged_within_source_z_source
+- Model: ElasticNet_Robust
+- MAE: 9.247
+- RMSE: 11.366
+- R2: -0.125
+
+Recommended conclusion:
+The project should emphasise known-patient monitoring as the main application, while presenting new-patient generalisation as a stricter robustness test. Weak or negative R2 under Scenario B should be interpreted as evidence of limited unseen-patient generalisation, not as a project failure. Dataset 2 and the merged analyses strengthen the project by adding source-aware supplementary evidence and cross-source stress tests rather than being forced into the main model.

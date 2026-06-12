@@ -1,0 +1,6 @@
+dataset,rows,columns,missing_values_total,duplicate_rows,numeric_columns,non_numeric_columns,n_subjects,records_per_subject_min,records_per_subject_median,records_per_subject_max,motor_UPDRS_missing,motor_UPDRS_min,motor_UPDRS_median,motor_UPDRS_max,total_UPDRS_missing,total_UPDRS_min,total_UPDRS_median,total_UPDRS_max,UPDRS_score_missing,UPDRS_score_min,UPDRS_score_median,UPDRS_score_max,UPDRS_target_missing,UPDRS_target_min,UPDRS_target_median,UPDRS_target_max
+df1_main_prepared,5875,24,0,0,22,2,42,101,141.0,168,0.0,5.0377,20.871,39.511,0.0,7.0,27.576,54.992,,,,,,,,
+df2_supplementary_pd_only,520,31,0,0,29,2,20,26,26.0,26,,,,,,,,,0.0,5.0,23.5,55.0,,,,
+merged_exploratory_shared_features,6395,15,0,0,13,2,62,26,130.0,168,,,,,,,,,,,,,0.0,5.0,27.424,55.0
+merged_within_source_standardised,6395,15,0,0,13,2,62,26,130.0,168,,,,,,,,,,,,,0.0,5.0,27.424,55.0
+df2_subject_level_aggregated,20,81,0,0,79,2,20,1,1.0,1,,,,,,,,,0.0,5.0,23.5,55.0,,,,

@@ -1,0 +1,5 @@
+analysis,target,feature_set,validation,model,MAE_mean,MAE_std,RMSE_mean,RMSE_std,R2_mean,R2_std,n_train,n_test
+Supplementary: Dataset 2 subject-level aggregation,UPDRS_score,D2_full26_mean_std_median,LeaveOneOut_subject_level,ElasticNet_Robust,23.067692014888145,18.673982642141976,29.38367167708629,,-2.9824730683893126,,19.0,1.0
+Supplementary: Dataset 2 subject-level aggregation,UPDRS_score,D2_full26_mean_std_median,LeaveOneOut_subject_level,MeanBaseline,12.947368421052634,8.741146354890128,15.499084058362916,,-0.10803324099723,,19.0,1.0
+Supplementary: Dataset 2 subject-level aggregation,UPDRS_score,D2_full26_mean_std_median,LeaveOneOut_subject_level,RandomForest,14.580134920634922,11.242589912181764,18.238869779696724,,-0.5343928544314316,,19.0,1.0
+Supplementary: Dataset 2 subject-level aggregation,UPDRS_score,D2_full26_mean_std_median,LeaveOneOut_subject_level,Ridge_Robust,22.582116368131206,17.991066443742078,28.591021805066788,,-2.770509814842272,,19.0,1.0

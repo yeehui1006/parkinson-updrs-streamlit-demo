@@ -1,0 +1,5 @@
+analysis,dataset,split_unit,target,rationale
+Scenario A: known-patient monitoring,df1_main,within each subject by test_time,total_UPDRS / motor_UPDRS,Predict later records for patients already enrolled in monitoring
+Scenario B: new-patient generalisation,df1_main,global_subject_id,total_UPDRS / motor_UPDRS,Test generalisation to unseen patients
+Supplementary Dataset 2,df2_supplementary,global_subject_id,UPDRS_score,Test source-specific signal in another recording design
+Exploratory merged analysis,merged_exploratory,global_subject_id,UPDRS_target,Evaluate shared-feature cross-source integration

@@ -1,0 +1,3 @@
+scenario,target,MAE,RMSE,R2
+Scenario A known-patient monitoring,motor_UPDRS,1.9093479490146241,2.656767472030874,0.8968930082935789
+Scenario B new-patient generalisation,motor_UPDRS,7.405487123439465,8.781536808297666,-0.1671069445527038
